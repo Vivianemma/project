@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="UTF-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"  > 
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" href="images/Group 8.png" type="image/x-icon" />
+        <title>Goal SETTER</title>
+        <link rel="stylesheet" href="main/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main/animate.css">
+        <link rel="stylesheet" href="main/style.css">
+        <link rel="stylesheet" href="fontawesome-free-5.6.1-web/css/all.min.css">
+        <script src="js/javascript.js"></script>
+</head>
+<body class="Dashboard">
+<div class="container-fluid px-0">
+    <nav class="navbar  navbar-expand-md navbar-dark bg-nav">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-brand">
+                  <img src="images/Group 3.png" alt="">
+                </p>
+            </div>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="active">
+                        <a class="nav-link fa fa-user-circle" style="font-size:40px; color:black" href="profile.html"></a>
+                    </li>
+                </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid">
+    <div class="row dash">
+            <div class="col-2 border" style="background-color:#e6e6e6;">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link profill" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                        <a class="nav-link profill" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                        <a class="nav-link profill" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                        <a class="nav-link profill" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                </div>
+            </div>
+    
+            <div class="col-7 border">
+                <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"> 
+                            <div class="fieldset">
+                                <fieldset>
+                                    <div>
+                                        <i class="fas fa-box-open icons"></i>
+                                        <p style="color:white">You have no Goal</p>
+                                        <a href="#form"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Goals</button></a>
+                                    </div>
+                                </fieldset>
+                            </div>      
+                        </div>
+  
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="container-fluid" style="color:#2d80ce" id="profile">
+                                        <div class="profile-img text-center" id="show_image">
+                                            
+                                        </div>
+                                        <div class="profile-name col-12 text-center">
+                                            <h4 id="bigName"> Name</h4>
+                                        </div>
+                        </div>
+                        <div class="tab-content ml-1" id="myTabContent">
+                        <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                        </div>
+                        </div>   
+                        <table class="table" style="color:#2d80ce">
+                                <tbody>
+                                  <tr>
+                                    <td>NAME</td>
+                                    <td id="fullName"></td>
+                                  </tr>
+                                </tbody>
+                                <tbody>
+                                  <tr>
+                                    <td>EMAIL</td>
+                                    <td id="fullEamil"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>NUMBER</td>
+                                    <td id="fullNumber"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>ACCOUNT TYPE</td>
+                                    <td id="fullAccountType"></td>
+                                  </tr>
+                                </tbody>
+                                <tbody>
+                                        <tr>
+                                          <td>DATE CREATED</td>
+                                          <td id="fullDate"></td>
+                                        </tr>
+                                </tbody>
+                              </table>
+                </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"> 
+                                <div class="modal-header">
+                                    <h4 class="modal-title">You have no massages</h4>
+                                </div>
+                                  
+                                  <!-- Modal body -->
+                                <div class="modal-body">
+                                    Modal body..
+                                </div>      
+                    </div>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">       
+                            </div> 
+            </div>
+        </div>
+        <div class="col-3 border" style="background-color:#e6e6e6;">
+                <form action="#" method="post" id="form">
+                        <h4 style=" margin-top:5%;" class="text-center">Create Task</h4>
+                        <label style="color:#161616;">Title</label>
+                    <div>
+                        <i class="fa fa-pen icon" style="color: #2d80ce;"></i>
+                        <input class="input-field" style=" background-color: #ffffff; color: #2d80ce;" type="text" placeholder="Title">
+                    </div>
+
+                        <label style="color:#161616;">Description</label>
+                    <div>
+                        <textarea style="border:none;" style=" background-color: #ffffff; color: #2d80ce;">Description</textarea>
+                    </div>
+                        <label style="color:#161616;">Start date</label>
+                    <div>
+                        <i class="fa fa-clock icon" style="color: #2d80ce;"></i>
+                        <input class="input-field" style=" background-color: #ffffff; color: #2d80ce;" type="date" >
+                    </div>
+                        <label style="color:#161616;">Due Date</label>
+                    <div>
+                        <i class="fa fa-clock icon" style="color: #2d80ce;"></i>
+                        <input class="input-field" style=" background-color: #ffffff; color: #2d80ce;" type="date" placeholder="Task Name">
+                    </div><br>
+                    <div>
+                        <input class="input-field"  value="Add Task" style=" background-color: #2d80ce; color: white;" type="submit">
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+    
+
+<div class="container mt-4">
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Create goal</h4>
+                <a href="" class="btn btn-danger" data-dismiss="modal">cancel</a>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form action="" method="get">
+                    <label style="color:#2d80ce">Name :</label> 
+                    <input style="background-color:#ffffff; border:1px solid; width: 40%; color:#2d80ce" type="text"> 
+                    <label style="color:#2d80ce;">due date :</label>
+                    <input style="background-color:#ffffff; border:1px solid; color:#2d80ce" type="date" value="">
+                    <label style="color:#2d80ce">Why do you want to active this goal ?</label>
+                    <textarea style="border: 1px solid #2d80ce; color:#2d80ce" rows="4" cols="40"></textarea>
+                    <label style="color:#2d80ce">S.M.A.R.T. goal</label> <br>
+                    <input type="checkbox"> <label style="color:#2d80ce;font-size: 12px;">
+                        Yes, my goal is Specific, Measurable, Achievable, Relavant and Time Specific</label>
+                </form>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-save="modal">Save</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+<script src="js/js/jquery.min.js"></script>
+<script src="js/js/bootstrap.min.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/javascript.js"></script>
+</body>
+</html>

@@ -1,58 +1,182 @@
-//dash bar//
-function openNav() {
-    document.getElementById("mySidebar").style.width = "25%";
-    document.getElementById("main").style.marginLeft = "50px";
-    document.getElementById("mySidebar").style.height = "83.5%";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
+
+
+function _(str) {
+  return document.querySelector(str);
+}
+
+
+// the path we dont want just anyone to see
+if(location.pathname == "/profile.html") {
+// check if there is a token
+const checkToken = !! localStorage.getItem("goaltoken");
+
+    // if there's jo token, redirect the user to login
+    if(!checkToken) {
+    location.replace('/login.html');
+    }
+
+}
+
+// For registration
+regForm = _("#addPost");
+
+if (regForm) {
+
+  addPost.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = _("#name").value;
+    const email = _("#email").value;
+    const phone = _("#phone_number").value;
+    const type = _("#accounttype").value;
+    const pwd = _("#password").value;
+    const cpwd = _("#confirm_password").value;
+
+
+    const userData = {
+      name: name,
+      email: email,
+      phone_number: phone,
+      account_type: type,
+      password: pwd,
+      password_confirmation: cpwd
+    }
+
+    const registerUrl = "https://goalsetterapi.herokuapp.com/api/register";
+
+    axios.post(registerUrl, userData).then(function (response) {
+
+      console.log(response.data);
+
+    }).catch(function (err) {
+      console.log(err.response)
+    })
+
+
+  })
+
+}
+
+
+// Login User
+loginForm = _("#loginForm");
+
+if (loginForm) {
+
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const email = _("#Email").value;
+    const pwd = _("#password").value;
+
+    const userData = {
+      email: email,
+      password: pwd
+    }
+
+
+    const loginUrl = "https://goalsetterapi.herokuapp.com/api/login";
+
+    axios.post(loginUrl, userData).then(function (response) {
+
+      console.log(response.data)
+
+      const token = response.data.data.token
+
+      localStorage.setItem('goaltoken', token);
+
+      location.replace("dashboard.html")
+
+    }).catch(function (err) {
+      console.log(err.response)
+    })
+
+
+  })
+}
+
+
+// View Users Profile
+profile = _("#profile");
+
+if (profile) {
+
+  const profileUrl = "https://goalsetterapi.herokuapp.com/api/profile";
+
+  const token = localStorage.getItem("goaltoken");
+
+
+  console.log(token)
+
+  const options = {
+    headers: {
+      Authorization: token,
+    }
   }
 
-  //drop down//
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
+  console.log(_('#basicInfo').innerHTML)
+
+  axios.get(profileUrl, options).then(function (response) {
+    console.log(response.data.data.user);
+
+
+    const user = response.data.data.user;
+
+    localStorage.setItem('user', user)
+
+    console.log(user.name)
+
+    if(user) {
+      _('#user_img').innerHTML = ``;
+    }
+
+    _('#bigName').innerHTML = `Name: ${user.name}`;
+         _("#show_image").innerHTML = `
+         <img src="http://res.cloudinary.com/getfiledata/image/upload/v1552380958/${user.user_image}">
+         `;
+        _("#user_details").innerHTML = `
+
+        <tr>
+          <td>NAME</td>
+            <td>${user.name}</td>
+          </tr>
+
+          <tr>
+            <td>EMAIL</td>
+            <td>${user.email}</td>
+          </tr>
+          <tr>
+            <td>NUMBER</td>
+            <td>${user.phone_number}</td>
+          </tr>
+          <tr>
+            <td>ACCOUNT TYPE</td>
+            <td>${user.account_type} </td>
+          </tr>
+
+          <tr>
+            <td>DATE CREATED</td>
+            <td>${new Date(user.created_at).toLocaleDateString()}</td>
+          </tr> 
   
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
-  
-  $(document).ready(function() {
-    $("#register").click(function() {
-    var Username = $("#Username").val();
-    var email = $("#email").val();
-    var password = $("#password").val();
-    var cpassword = $("#cpassword").val();
-    var accountype = $("#accountype").val();
-    if (Username == '' || email == '' || password == '' || cpassword == '' || accountype == '') {
-    alert("Please fill all fields...!!!!!!");
-    } else if ((password.length) < 8) {
-    alert("Password should atleast 8 character in length...!!!!!!");
-    } else if (!(password).match(cpassword)) {
-    alert("Your passwords don't match. Try again?");
-    } else {
-    $.post("register.php", {
-    Username1: Username,
-    email1: email,
-    password1: password
-    }, function(data) {
-    if (data == 'You have Successfully Registered.....') {
-    $("form")[0].reset();
-    }
-    alert(data);
-    });
-    }
-    });
-    });
+        `;
+  }).catch(function (err) {
+   
+  })
+}
+
+
+
+logoutForm = _("#logoutForm");
+
+if (logoutForm) {
+
+  logoutForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+      localStorage.removeItem('goaltoken');
+
+      location.replace("index.html")
+    
+
+  })
+}
